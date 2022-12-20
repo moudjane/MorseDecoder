@@ -64,52 +64,68 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div>
+  <div class="bigcontainer">
+    <div class="container">
       <h1>Latin to morse converter:</h1>
-    </div>
-    <div>
-      <input class="latin-input" v-model="latin" placeholder="write here" maxlength="30" />
-    </div>
-    <div class="limit">
-      Latin <span class="latin"> {{ latin }}</span>
-      <br />
-      Morse: <span class="morse"> {{ convert }}</span>
+      <input class="latin-input" v-model="latin" placeholder="write here" maxlength="125" />
+      <div class="limit">
+        Latin: <br /><span class="latin"> {{ latin }}</span>
+        <br />
+        Morse: <br /><span class="morse"> {{ convert }}</span>
+        <!-- <span>loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum</span> -->
+        <br />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* ::selection {
+  background-color: rgb(255, 63, 63);
+} */
+
 .latin {
   color: rgb(132, 132, 255);
+  text-transform: uppercase;
 }
 
 .morse {
   color: rgb(255, 136, 136);
 }
 
-/* .container {
-  border: 5px solid white;
-  padding: 0.125rem 0.5rem;
-
-  width: 50%;
-  height: 75%;
+/* .bigcontainer {
+  position: relative;
+  display: flex;
   overflow-wrap: break-word;
 } */
+
+/* .limit {
+  overflow-wrap: break-word;
+}
+
+.container {
+  position: absolute;
+  border: 5px solid white;
+  padding: 0.125rem 0.5rem;
+  overflow-wrap: break-word;
+} */
+
 .latin-input {
 
-  width: fit-content;
+
   border: 0;
-  border-bottom: 1.5px solid var(--color-text);
+  border-bottom: 1.5px solid rgba(235, 235, 235, 0.64);
   outline: 0;
 
-  color: var(--color-text);
+  color: rgba(235, 235, 235, 0.64);
+  width: 200px;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .latin-input:focus {
@@ -118,5 +134,9 @@ export default {
   border-width: 3px;
   border-image: linear-gradient(to right, rgb(132, 132, 255), rgb(255, 136, 136));
   border-image-slice: 1;
+
+  background: linear-gradient(to right, rgb(132, 132, 255), rgb(255, 136, 136));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
