@@ -11,6 +11,10 @@ export default {
         },
     },
     methods: {
+        copy() {
+            this.$refs.clone.focus();
+            document.execCommand('copy');
+        },
         abc(char) {
             const MorseToLatin = {
                 '.-': 'A',
@@ -65,20 +69,32 @@ export default {
 <template>
     <div class="container">
         <h1>Morse to latin converter:</h1>
-        <input class="latin-input" v-model="morse" placeholder="write here" maxlength="125" />
-
-        Morse: <br /><span class="morse"> {{ morse }}</span>
-
+        <input class="latin-input" v-model="morse" placeholder="write here" maxlength="100" />
+        Morse: <span class="morse"> {{ morse }}</span>
         <br />
-        Latin: <br /><span class="latin"> {{ convert }}</span>
-        <!-- <span>loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum</span> -->
+        Latin: <br /><textarea class="latin" v-on:focus="$event.target.select()" ref="clone" readonly
+            v-model="convert" />
+        <br />
+        <button class="copy" @click="copy">Copy</button>
     </div>
 </template>
 
-<style>
+<style scoped>
+.container {
+    width: 500px;
+}
+
 .latin {
     color: rgb(132, 132, 255);
     text-transform: uppercase;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+
+    border: 1.5px solid rgba(235, 235, 235, 0.64);
+    resize: none;
+    height: 120px;
+    width: 400px;
 }
 
 .morse {
@@ -86,15 +102,13 @@ export default {
 }
 
 .latin-input {
-
-
     border: 0;
-    border-bottom: 1.5px solid rgba(235, 235, 235, 0.64);
+    border: 1.5px solid rgba(235, 235, 235, 0.64);
     outline: 0;
 
     color: rgba(235, 235, 235, 0.64);
-    width: 200px;
-    padding: 7px 0;
+    width: 400px;
+    padding: 7px 5px;
     background: transparent;
     transition: border-color 0.2s;
     display: flex;
@@ -109,9 +123,22 @@ export default {
     border-width: 3px;
     border-image: linear-gradient(to right, rgb(132, 132, 255), rgb(255, 136, 136));
     border-image-slice: 1;
+}
 
-    /* background: linear-gradient(to right, rgb(132, 132, 255), rgb(255, 136, 136));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
+.copy {
+    background-color: transparent;
+    color: rgba(235, 235, 235, 0.64);
+    outline: 0;
+    border: 2px solid rgba(235, 235, 235, 0.64);
+    padding: 2px;
+}
+
+.copy:hover {
+    background-color: transparent;
+    color: rgb(132, 132, 255);
+    outline: 0;
+    border: 2px solid rgb(132, 132, 255);
+    padding: 2px;
+    cursor: pointer;
 }
 </style>

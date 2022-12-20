@@ -8,14 +8,14 @@ export default {
   },
   components: {
     LatinToMorse: LatinToMorse,
-    MorseToLatin: MorseToLatin
+    MorseToLatin: MorseToLatin,
   }
 }
 </script>
 
 <template>
   <LatinToMorse />
-  <br /><br /><br />
+  <br />
   <MorseToLatin />
 </template>
 
